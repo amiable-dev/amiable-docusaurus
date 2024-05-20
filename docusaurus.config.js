@@ -87,7 +87,11 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        logo: {
+          alt: 'amiable.dev logo',
+          src: '/img/logo.svg',
+          width:100,
+        },
         links: [
           {
             title: 'Docs',
