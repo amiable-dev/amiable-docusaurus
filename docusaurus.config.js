@@ -60,9 +60,12 @@ const config = {
     ],
   ],
 
+  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+
   markdown: {
     mermaid: true,
   },
+  
   themes: ["@docusaurus/theme-mermaid"],
 
   themeConfig:
@@ -134,6 +137,16 @@ const config = {
       },
       mermaid: {
         theme: {light: 'neutral', dark: 'forest'},
+      },
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+          background: {
+            light: 'rgb(255, 255, 255)',
+            dark: 'rgb(50, 50, 50)'
+          }
+        }
       },
     }),
 };
