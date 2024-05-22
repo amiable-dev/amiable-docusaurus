@@ -13,6 +13,8 @@ tags: [monitoring, observability, sre]
 
 In the ever-evolving landscape of IT infrastructure, understanding the nuances between observability and monitoring is crucial. These two concepts, though related, serve distinct purposes in maintaining and optimizing system performance. Here’s a deeper dive into their differences, practical implementations, and why both are essential for modern IT operations.
 
+<!--truncate-->
+
 ## Understanding Monitoring
 
 Monitoring involves the systematic collection and analysis of predefined metrics to track system health and performance. It is primarily reactive, focusing on detecting issues based on established thresholds and known patterns. Monitoring tools provide alerts and dashboards that help IT teams respond to anomalies and maintain system uptime. For example, monitoring can alert you when CPU usage exceeds a certain percentage or when a specific service becomes unresponsive [^fn1]<sup>,</sup>[^fn2].
