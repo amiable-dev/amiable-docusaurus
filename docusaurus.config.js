@@ -113,6 +113,14 @@ const config = {
           {
             title: 'Social',
             items: [
+              { 
+                label: 'linkedin',
+                href: 'https://www.linkedin.com/in/christopher-joseph-uk/' 
+              },
+              { 
+                label: 'Twitter | X',
+                href: 'https://x.com/amiabledev' 
+              },
             ],
           },
           {
