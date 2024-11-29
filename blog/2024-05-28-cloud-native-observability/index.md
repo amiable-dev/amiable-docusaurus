@@ -251,4 +251,4 @@ Implementing observability in cloud-native environments requires careful conside
 4. Designing actionable alerts
 5. Continuously reviewing and optimizing your observability strategy
 
-Remember that observability is not a one-time implementation but a continuous journey of improvement and refinement. For more background on observability concepts, check out our previous post about [Monitoring vs Observability](/blog/monitoring-vs-observability).
+Remember that observability is not a one-time implementation but a continuous journey of improvement and refinement. For more background on observability concepts, check out our previous post about [Monitoring vs Observability](/monitoring-vs-observability).
