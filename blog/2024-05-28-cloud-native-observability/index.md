@@ -6,7 +6,7 @@ tags: [observability, cloudnative, kubernetes, sre, devops]
 ---
 
 <div class="text--center"> 
-  ![Cloud Native Observability Architecture](./cloud-native-obs.png)
+  ![Cloud Native Observability Architecture](./cloud-native-obs.svg)
 </div>
 
 # Implementing Cloud-Native Observability: A Practical Guide
