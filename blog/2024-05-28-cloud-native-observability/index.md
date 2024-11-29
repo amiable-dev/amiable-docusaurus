@@ -2,7 +2,7 @@
 slug: implementing-cloud-native-observability
 title: Implementing Cloud-Native Observability
 authors: [chris]
-tags: [observability, cloud-native, kubernetes, sre, devops]
+tags: [observability, cloudnative, kubernetes, sre, devops]
 ---
 
 <div class="text--center"> 
