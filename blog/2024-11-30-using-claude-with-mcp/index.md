@@ -31,32 +31,33 @@ In this post, we'll explore how to use Claude Desktop with the Model Context Pro
 
 To use Claude Desktop with the MCP GitHub Server, you'll need:
 
-1. **Environment Setup**:
+1. **Environment Setup:**
    - Claude Desktop with MCP support enabled
    - MCP GitHub Server running locally or accessible
    - GitHub repository access configured
 
-2. **Configuration Steps**:
-   ```yaml
-   # Example MCP configuration
-   protocol:
-     version: "1.0"
-     servers:
-       - type: "github"
-         url: "http://localhost:3000"  # or your server URL
-         functions:
-           - search_repositories
-           - create_repository
-           - get_file_contents
-           - create_or_update_file
-           - push_files
-           - create_issue
-           - create_pull_request
-           - fork_repository
-           - create_branch
-   ```
+2. **Configuration Steps:**
 
-3. **Function Availability**:
+```yaml
+# Example MCP configuration
+protocol:
+  version: "1.0"
+  servers:
+    - type: "github"
+      url: "http://localhost:3000"  # or your server URL
+      functions:
+        - search_repositories
+        - create_repository
+        - get_file_contents
+        - create_or_update_file
+        - push_files
+        - create_issue
+        - create_pull_request
+        - fork_repository
+        - create_branch
+```
+
+3. **Function Availability:**
    - List available functions in your environment
    - Review function parameters and limitations
    - Test basic operations before complex tasks
@@ -66,6 +67,7 @@ To use Claude Desktop with the MCP GitHub Server, you'll need:
 The Model Context Protocol GitHub Server provides a specific set of functions for GitHub interaction:
 
 ### Available Functions
+
 ```typescript
 // Repository Operations
 search_repositories(query: string)
@@ -97,7 +99,8 @@ create_pull_request(owner: string, repo: string, title: string, body: string)
 Working with Claude through MCP requires understanding the division of responsibilities:
 
 ### Claude's Role
-✅ **Can Do**:
+
+Can Do:
 - Create and plan initial structures
 - Generate code and documentation
 - Create issues and PRs
@@ -105,7 +108,7 @@ Working with Claude through MCP requires understanding the division of responsib
 - Handle file operations
 - Follow repository conventions
 
-❌ **Cannot Do**:
+Cannot Do:
 - Merge pull requests
 - Delete content
 - Update or close issues
@@ -113,19 +116,20 @@ Working with Claude through MCP requires understanding the division of responsib
 - Access private repositories without setup
 
 ### Human Partner's Role
-1. **Repository Management**:
+
+1. **Repository Management:**
    - Merge pull requests
    - Close completed issues
    - Delete branches when needed
    - Handle repository settings
 
-2. **Quality Control**:
+2. **Quality Control:**
    - Review generated content
    - Test implementations
    - Verify security aspects
    - Validate business logic
 
-3. **Process Management**:
+3. **Process Management:**
    - Guide overall direction
    - Make architectural decisions
    - Handle access controls
@@ -134,23 +138,24 @@ Working with Claude through MCP requires understanding the division of responsib
 ## Best Practices for Collaboration
 
 1. **Clear Task Division**
-   ```mermaid
-   graph TD
-     A[Task Identification] --> B[Capability Assessment]
-     B --> C{Who Handles?}
-     C -->|Claude| D[Generation & Creation]
-     C -->|Human| E[Review & Management]
-     D --> F[PR Creation]
-     E --> G[PR Merge & Cleanup]
-   ```
 
-2. **Communication Flow**:
+```mermaid
+graph TD
+  A[Task Identification] --> B[Capability Assessment]
+  B --> C{Who Handles?}
+  C -->|Claude| D[Generation & Creation]
+  C -->|Human| E[Review & Management]
+  D --> F[PR Creation]
+  E --> G[PR Merge & Cleanup]
+```
+
+2. **Communication Flow:**
    - Explicitly state task requirements
    - Define success criteria
    - Clarify any assumptions
    - Document decisions
 
-3. **Error Prevention**:
+3. **Error Prevention:**
    - Check API capabilities before operations
    - Validate generated content
    - Use descriptive commit messages
@@ -161,6 +166,7 @@ Working with Claude through MCP requires understanding the division of responsib
 Let's look at how we collaborated on the AI metadata feature:
 
 ### 1. Issue Creation
+
 ```typescript
 // Claude creates the issue
 create_issue({
@@ -175,6 +181,7 @@ create_issue({
 ```
 
 ### 2. Implementation Flow
+
 ```typescript
 // Claude creates the branch
 create_branch({
@@ -241,4 +248,4 @@ Effective collaboration with Claude via MCP GitHub Server requires:
 
 By following these practices and understanding the capabilities and limitations of both Claude and the MCP GitHub Server, teams can maintain efficient workflows while ensuring quality and security.
 
-Our experience implementing the AI metadata feature demonstrates how this partnership can work effectively, with each party handling the tasks they're best suited for.</parameter
+Our experience implementing the AI metadata feature demonstrates how this partnership can work effectively, with each party handling the tasks they're best suited for.
