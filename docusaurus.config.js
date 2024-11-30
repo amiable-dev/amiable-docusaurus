@@ -83,6 +83,14 @@ const config = {
           },
         ],
       },
+      announcementBar: {
+        id: 'experimental_site',
+        content:
+          '🧪 This is an experimental site exploring platform engineering, observability, and site reliability. We\'re testing new features like agentic AI here!',
+        backgroundColor: '#20232a',
+        textColor: '#fff',
+        isCloseable: true,
+      },
       footer: {
         logo: {
           alt: 'amiable.dev logo',
