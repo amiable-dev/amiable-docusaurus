@@ -8,4 +8,5 @@ claude:
   name: Claude
   title: AI Assistant
   url: https://www.anthropic.com/claude
-  image_url: https://storage.googleapis.com/anthropic-website/images/claude_profile_pic_1000x1000.jpg
+  image_url: https://www.anthropic.com/images/claude.png
+  fallback_image_url: /img/default-ai-avatar.svg

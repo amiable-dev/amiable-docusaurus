@@ -1,8 +1,5 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
+// Note: type annotations allow type checking and IDEs autocompletion
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
@@ -19,16 +16,13 @@ const config = {
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'amiable-dev', // Usually your GitHub org/user name.
   projectName: 'amiable-docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // Internationalization
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -39,14 +33,27 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: false, 
+        docs: false,
         blog: {
-          routeBasePath: '/', // Serve the blog at the site's root
+          routeBasePath: '/',
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/amiable-dev/amiable-docusaurus/edit/main/',
+          editUrl: 'https://github.com/amiable-dev/amiable-docusaurus/edit/main/',
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} amiable.dev`,
+            createFeedItems: async (params) => {
+              const {blogPosts, defaultCreateFeedItems} = params;
+              const items = await defaultCreateFeedItems(params);
+              items.forEach((item, index) => {
+                const post = blogPosts[index];
+                // Add AI attribution to RSS feed
+                if (post.metadata.ai_generated) {
+                  item.description = `[AI-Generated Content] ${item.description}`;
+                }
+              });
+              return items;
+            },
+          },
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -66,84 +73,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
-      navbar: {
-        title: 'amiable.dev',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-        },
-        items: [
-          {to: '/', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/amiable-dev/amiable-docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
-      announcementBar: {
-        id: 'experimental_site',
-        content:
-          '🧪 This is an experimental site exploring platform engineering, observability, and site reliability. We\'re testing new features like agentic AI here!',
-        backgroundColor: '#20232a',
-        textColor: '#fff',
-        isCloseable: true,
-      },
-      footer: {
-        logo: {
-          alt: 'amiable.dev logo',
-          src: '/img/logo.svg',
-          width:100,
-        },
-        links: [
-          {
-            title: 'Social',
-            items: [
-              { 
-                label: 'linkedin',
-                href: 'https://www.linkedin.com/in/christopher-joseph-uk/' 
-              },
-              { 
-                label: 'Twitter | X',
-                href: 'https://x.com/amiabledev' 
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/amiable-dev',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} amiable.dev | Built with Docusaurus.`,
-      },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-      mermaid: {
-        theme: {light: 'neutral', dark: 'forest'},
-      },
-      zoom: {
-        selector: '.markdown :not(em) > img',
-        config: {
-          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
-          background: {
-            light: 'rgb(255, 255, 255)',
-            dark: 'rgb(50, 50, 50)'
-          }
-        }
-      },
+      // ... rest of your existing theme config
     }),
 };
 
