@@ -207,4 +207,4 @@ Implementing AI metadata in Docusaurus helps maintain transparency while followi
 - Extensible
 - Well-documented
 
-You can find the complete implementation in our [GitHub repository](https://github.com/amiable-dev/amiable-docusaurus), and we welcome contributions and suggestions for improvements.</parameter
+You can find the complete implementation in our [GitHub repository](https://github.com/amiable-dev/amiable-docusaurus), and we welcome contributions and suggestions for improvements.
