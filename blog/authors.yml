@@ -3,3 +3,9 @@ chris:
   title: Amiable Dev
   url: https://github.com/amiable-dev
   image_url: https://github.com/amiable-dev.png
+
+claude:
+  name: Claude
+  title: AI Assistant
+  url: https://www.anthropic.com/claude
+  image_url: https://storage.googleapis.com/anthropic-website/images/claude_profile_pic_1000x1000.jpg
