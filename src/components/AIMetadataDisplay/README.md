@@ -16,19 +16,22 @@ npm install @/components/ui
 
 ## Theme Integration
 
-1. Swizzle the BlogPostItem component:
+1. Swizzle the BlogPostItem component using the wrap option:
 ```bash
-npm run swizzle @docusaurus/theme-classic BlogPostItem
+npm run swizzle @docusaurus/theme-classic BlogPostItem -- --wrap
 ```
 
-2. Replace the content of `src/theme/BlogPostItem/index.js` with:
-```jsx
+2. Convert the generated wrapper to TypeScript by renaming it to `index.tsx` and updating its contents to:
+```tsx
 import React from 'react';
 import BlogPostItem from '@theme-original/BlogPostItem';
+import type BlogPostItemType from '@theme/BlogPostItem';
 import AIMetadataDisplay from '@site/src/components/AIMetadataDisplay';
+import type {Props} from '@theme/BlogPostItem';
 
-export default function BlogPostItemWrapper(props) {
-  const { metadata } = props.content;
+export default function BlogPostItemWrapper(props: Props): JSX.Element {
+  const { content } = props;
+  const { metadata } = content;
   
   return (
     <>
@@ -38,6 +41,14 @@ export default function BlogPostItemWrapper(props) {
   );
 }
 ```
+
+## Why Wrap Instead of Eject?
+
+We use the `--wrap` option instead of ejecting because:
+1. It's safer for upgrades
+2. Requires less maintenance
+3. Keeps theme code intact
+4. Reduces risk of breaking changes
 
 ## Usage
 
@@ -74,25 +85,31 @@ ai_quality_metrics:
 - Fully accessible
 - Responsive design
 
-## Customization
+## Type Safety
 
-You can customize the component by:
-
-1. Modifying the Tailwind classes in the component
-2. Adjusting the tooltips and explanations
-3. Adding new metadata fields (requires type updates)
+The component and wrapper are fully typed using TypeScript, providing:
+- Type checking for metadata structure
+- Proper component props validation
+- Better IDE support
+- Safer refactoring
 
 ## Troubleshooting
 
 1. If the component doesn't appear:
    - Verify AI metadata is present in front matter
    - Check `ai_generated` is set to true
-   - Ensure BlogPostItem is properly swizzled
+   - Ensure BlogPostItem is properly swizzled with --wrap option
+   - Verify TypeScript compilation is successful
 
 2. Styling issues:
    - Verify shadcn/ui components are installed
    - Check Tailwind configuration
    - Verify theme integration
+
+3. TypeScript errors:
+   - Ensure @docusaurus/theme-classic types are installed
+   - Check import paths are correct
+   - Verify Props type is properly imported
 
 ## Contributing
 
