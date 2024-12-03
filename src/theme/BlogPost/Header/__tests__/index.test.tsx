@@ -1,7 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import BlogPostHeaderWrapper from '../index';
-import type { WrapperProps } from '@docusaurus/types';
 
 // Mock the original header component
 jest.mock('@theme-original/BlogPost/Header', () => {
@@ -21,40 +20,24 @@ describe('BlogPostHeaderWrapper', () => {
         },
       ],
     },
-  } as WrapperProps<any>;
+  };
 
-  it('renders both AIMetadata and original header', () => {
-    const { getByTestId, getByText } = render(
-      <BlogPostHeaderWrapper {...mockProps} />
-    );
-    
-    expect(getByText('AI Generation Information')).toBeInTheDocument();
-    expect(getByTestId('original-header')).toBeInTheDocument();
+  test('renders both AIMetadata and original header', () => {
+    render(<BlogPostHeaderWrapper {...mockProps} />);
+    expect(screen.getByText('AI Generation Information')).toBeInTheDocument();
+    expect(screen.getByTestId('original-header')).toBeInTheDocument();
   });
 
-  it('renders original header when no AI metadata', () => {
-    const props = {
-      metadata: {
-        ai_generated: false,
-      },
-    } as WrapperProps<any>;
-
-    const { getByTestId, queryByText } = render(
-      <BlogPostHeaderWrapper {...props} />
+  test('renders only original header when no AI metadata', () => {
+    render(
+      <BlogPostHeaderWrapper
+        metadata={{
+          ai_generated: false,
+        }}
+      />,
     );
 
-    expect(queryByText('AI Generation Information')).not.toBeInTheDocument();
-    expect(getByTestId('original-header')).toBeInTheDocument();
-  });
-
-  it('handles missing metadata gracefully', () => {
-    const props = {} as WrapperProps<any>;
-
-    const { getByTestId, queryByText } = render(
-      <BlogPostHeaderWrapper {...props} />
-    );
-
-    expect(queryByText('AI Generation Information')).not.toBeInTheDocument();
-    expect(getByTestId('original-header')).toBeInTheDocument();
+    expect(screen.queryByText('AI Generation Information')).not.toBeInTheDocument();
+    expect(screen.getByTestId('original-header')).toBeInTheDocument();
   });
 });
