@@ -3,14 +3,19 @@ import {fileURLToPath} from 'url';
 const config = {
   rootDir: fileURLToPath(new URL('.', import.meta.url)),
   verbose: true,
-  testURL: 'http://localhost/',
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
   setupFilesAfterEnv: ['./jest.setup.ts'],
+  testMatch: [
+    '**/__tests__/**/*.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[tj]s?(x)'
+  ],
   testPathIgnorePatterns: [
     '/node_modules/',
-    '__fixtures__',
-    'build',
-    '.docusaurus',
+    '/.docusaurus/',
+    '/build/',
   ],
   transform: {
     '^.+\\.[jt]sx?$': [
@@ -32,8 +37,14 @@ const config = {
     enableGlobally: true,
   },
   snapshotSerializers: ['jest-serializer-html'],
-  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
-  coveragePathIgnorePatterns: ['/node_modules/', '__tests__'],
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.d.ts',
+  ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '__tests__',
+  ],
 };
 
 export default config;

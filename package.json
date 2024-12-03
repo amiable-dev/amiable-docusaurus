@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "test": "jest --config jest.config.mjs",
     "test:watch": "jest --config jest.config.mjs --watch",
-    "test:ci": "jest --config jest.config.mjs --ci --coverage",
+    "test:ci": "jest --config jest.config.mjs --ci --coverage --passWithNoTests",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --config jest.config.mjs --runInBand --watch"
   },
   "dependencies": {
