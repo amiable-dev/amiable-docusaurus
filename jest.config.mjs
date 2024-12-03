@@ -31,7 +31,7 @@ const config = {
   fakeTimers: {
     enableGlobally: true,
   },
-  snapshotSerializers: [require.resolve('snapshot-serializer-beautifier')],
+  snapshotSerializers: ['jest-serializer-html'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
   coveragePathIgnorePatterns: ['/node_modules/', '__tests__'],
 };
