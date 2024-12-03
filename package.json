@@ -12,10 +12,10 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --ci --coverage",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch"
+    "test": "jest --config jest.config.mjs",
+    "test:watch": "jest --config jest.config.mjs --watch",
+    "test:ci": "jest --config jest.config.mjs --ci --coverage",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --config jest.config.mjs --runInBand --watch"
   },
   "dependencies": {
     "@docusaurus/core": "3.6.0",
