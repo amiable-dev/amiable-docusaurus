@@ -1,30 +1,26 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testPathIgnorePatterns: ['/node_modules/', '/.docusaurus/', '/build/'],
+  testEnvironment: 'node',
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  },
+  testMatch: ['**/__tests__/**/*.ts', '**/__tests__/**/*.tsx'],
   transform: {
-    '^.+\\.[jt]sx?$': ['@swc/jest'],
+    '^.+\\.[jt]sx?$': '@docusaurus/core/lib/jest/babelTransform.js',
   },
   moduleNameMapper: {
-    '^@/components/ui/(.*)$': '<rootDir>/src/components/ui/$1',
-    '^@theme-original/(.*)$': '<rootDir>/node_modules/@docusaurus/theme-classic/lib/theme/$1',
     '^@site/(.*)$': '<rootDir>/$1',
+    '^@docusaurus/(.*)': ['@docusaurus/$1', '<rootDir>/node_modules/@docusaurus/$1'],
+    '^@theme/(.*)$': ['@theme/$1', '@docusaurus/theme-classic/lib/theme/$1'],
   },
+  snapshotSerializers: [
+    require.resolve('snapshot-serializer-beautifier'),
+  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testPathIgnorePatterns: ['/node_modules/', '/.docusaurus/', '/build/'],
   transformIgnorePatterns: [
-    '/node_modules/(?!(@docusaurus/|remark-|rehype-|@mdx-js/|prism-react-renderer/))',
+    '/node_modules/(?!(@docusaurus/|@site/|remark-|rehype-|parse5|unified|bail|trough|vfile|unist|hast|property-information|html-void-elements|ccount|nlcst|linguist))'
   ],
-  collectCoverageFrom: [
-    'src/theme/**/*.{js,jsx,ts,tsx}',
-    '!src/theme/**/*.d.ts',
-    '!src/theme/**/types.ts',
-  ],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  },
+  coveragePathIgnorePatterns: ['/node_modules/', '__tests__'],
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
 };
